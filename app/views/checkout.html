@@ -1,0 +1,55 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-md-7">
+         <div class="panel-group">
+            <div class="panel panel-default panelDiv col-md-3" ng-repeat="item in cart track by $index">
+               <div class="panel-header">
+                  <div style="white-space: nowrap;overflow-x: hidden">{{item.name}}</div>
+               </div>
+               <div class="panel-body">
+                  <span class="badge" ng-show="item.quantity > 0">
+                     x{{item.quantity}}
+                  </span>
+                  <img ng-src="{{item.media.images[0].smallUrl}}" alt="Avatar">
+               </div>
+               <div class="panel-footer">
+                  <div class="row">{{item.units[0].price.value}}</div>
+                  <div class="row">
+                     <button type="button" class="btn btn-default" ng-click="removeFromCart(item)">Remove from Cart</button>
+                  </div>
+               </div>
+            </div>
+         </div>         
+      </div>
+      <div class="col-md-5">
+            <div class="panel panel-default" ng-if="cart.length">
+               <div class="panel-body">
+                  <div class="shopping-cart">
+                     <h2>{{cart.length}} items in cart, {{getCartPrice()}}$</h2>
+                     <span class="cart-item th radius" ng-repeat="product in cart track by $index">
+                        <img ng-src="{{product.image}}" title="{{product.title}}"/>
+                        <span class="badge" ng-show="product.quantity > 0">
+                           x{{product.quantity}}
+                        </span>
+                     </span>
+                     <button type="button" ng-click="checkoutOrder()" class="btn btn-default">Checkout</button>
+                     <button type="button" ng-click="emptyCart()" class="btn btn-default">Empty Cart</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+
+   <style type="text/css">
+   img {
+   max-width:100%;
+   max-height:200px;
+   }
+   .panelDiv{
+   /*max-width:100px;*/
+   max-height:350px;
+   min-height:300px;
+   margin-left: 10px;
+   margin-right: 10px;
+   }
+   </style>
